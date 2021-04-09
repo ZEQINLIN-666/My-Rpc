@@ -2,24 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="976118f2-12c6-4b37-8122-8859054cbb70" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/rpc-common/src/main/java/pers/zeqinlin/rpc/enumeration/RpcError.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rpc-common/src/main/java/pers/zeqinlin/rpc/exception/RpcException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rpc-core/src/main/java/pers/zeqinlin/rpc/registry/DefaultServiceRegistry.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rpc-core/src/main/java/pers/zeqinlin/rpc/registry/ServiceRegistry.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rpc-core/src/main/java/pers/zeqinlin/rpc/server/RequestHandlerThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rpc-api/src/main/java/pers/zeqinlin/rpc/api/HelloObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/rpc-api/src/main/java/pers/zeqinlin/rpc/api/HelloObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rpc-api/src/main/java/pers/zeqinlin/rpc/api/HelloService.java" beforeDir="false" afterPath="$PROJECT_DIR$/rpc-api/src/main/java/pers/zeqinlin/rpc/api/HelloService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rpc-api/target/classes/pers/zeqinlin/rpc/api/HelloObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/rpc-api/target/classes/pers/zeqinlin/rpc/api/HelloObject.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rpc-core/src/main/java/pers/zeqinlin/rpc/client/RpcClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/rpc-core/src/main/java/pers/zeqinlin/rpc/client/RpcClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rpc-core/src/main/java/pers/zeqinlin/rpc/client/RpcClientProxy.java" beforeDir="false" afterPath="$PROJECT_DIR$/rpc-core/src/main/java/pers/zeqinlin/rpc/client/RpcClientProxy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rpc-core/src/main/java/pers/zeqinlin/rpc/server/RpcServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/rpc-core/src/main/java/pers/zeqinlin/rpc/server/RpcServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rpc-core/src/main/java/pers/zeqinlin/rpc/server/WorkerThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/rpc-core/src/main/java/pers/zeqinlin/rpc/server/RequestHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rpc-core/target/classes/pers/zeqinlin/rpc/client/RpcClientProxy.class" beforeDir="false" afterPath="$PROJECT_DIR$/rpc-core/target/classes/pers/zeqinlin/rpc/client/RpcClientProxy.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rpc-core/target/classes/pers/zeqinlin/rpc/server/RpcServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/rpc-core/target/classes/pers/zeqinlin/rpc/server/RpcServer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rpc-core/target/classes/pers/zeqinlin/rpc/server/WorkerThread.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test-server/src/main/java/pers/zeqinlin/test/TestServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/test-server/src/main/java/pers/zeqinlin/test/TestServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test-server/target/classes/pers/zeqinlin/test/TestServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/test-server/target/classes/pers/zeqinlin/test/TestServer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rpc-core/target/classes/pers/zeqinlin/rpc/client/RpcClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/rpc-core/target/classes/pers/zeqinlin/rpc/client/RpcClient.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -118,8 +101,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/rpc-core/src/main/java/pers/zeqinlin/rpc/client/RpcClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1050">
-              <caret line="42" column="49" selection-start-line="42" selection-start-column="49" selection-end-line="42" selection-end-column="49" />
+            <state relative-caret-position="560">
+              <caret line="46" lean-forward="true" selection-start-line="46" selection-end-line="46" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -175,6 +158,7 @@
     <option name="PREVIOUS_COMMIT_AUTHORS">
       <list>
         <option value="zeqinlin" />
+        <option value="linzeqin'" />
       </list>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -557,7 +541,7 @@
       <option name="presentableId" value="Default" />
       <updated>1617778987432</updated>
       <workItem from="1617778990758" duration="678000" />
-      <workItem from="1617779680037" duration="20293000" />
+      <workItem from="1617779680037" duration="21065000" />
     </task>
     <task id="LOCAL-00001" summary="第一次，最简易版本">
       <created>1617867185219</created>
@@ -566,11 +550,18 @@
       <option name="project" value="LOCAL" />
       <updated>1617867185219</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="第二次，支持多个服务的注册">
+      <created>1617949380399</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1617949380399</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="20971000" />
+    <option name="totallyTimeSpent" value="21743000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -584,7 +575,7 @@
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49917355" visible="true" weight="0.2524013" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49917355" visible="true" weight="0.2524013" />
       <window_info id="Structure" order="1" sideWeight="0.5008264" side_tool="true" weight="0.2524013" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -594,7 +585,7 @@
       <window_info anchor="bottom" id="Messages" weight="0.32897604" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4994664" visible="true" weight="0.16993465" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4994664" visible="true" weight="0.16993465" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -621,7 +612,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="第一次，最简易版本" />
-    <option name="LAST_COMMIT_MESSAGE" value="第一次，最简易版本" />
+    <MESSAGE value="第二次，支持多个服务的注册" />
+    <option name="LAST_COMMIT_MESSAGE" value="第二次，支持多个服务的注册" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/rpc-common/pom.xml">
@@ -826,8 +818,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/rpc-core/src/main/java/pers/zeqinlin/rpc/client/RpcClient.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1050">
-          <caret line="42" column="49" selection-start-line="42" selection-start-column="49" selection-end-line="42" selection-end-column="49" />
+        <state relative-caret-position="560">
+          <caret line="46" lean-forward="true" selection-start-line="46" selection-end-line="46" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
