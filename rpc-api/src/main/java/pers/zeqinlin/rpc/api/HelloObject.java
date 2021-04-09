@@ -6,6 +6,10 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
+
+/**
+ * 测试用的传输实体
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

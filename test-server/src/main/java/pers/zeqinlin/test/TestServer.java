@@ -1,6 +1,8 @@
 package pers.zeqinlin.test;
 
 
+import pers.zeqinlin.rpc.registry.DefaultServiceRegistry;
+import pers.zeqinlin.rpc.registry.ServiceRegistry;
 import pers.zeqinlin.rpc.server.RpcServer;
 
 /**
@@ -9,7 +11,9 @@ import pers.zeqinlin.rpc.server.RpcServer;
 public class TestServer {
     public static void main(String[] args) {
          HelloServiceImpl helloService = new HelloServiceImpl();
-         RpcServer rpcServer = new RpcServer();
-         rpcServer.register(helloService,8000);
+         ServiceRegistry serviceRegistry = new DefaultServiceRegistry();
+         serviceRegistry.registry(helloService);
+         RpcServer rpcServer = new RpcServer(serviceRegistry);
+         rpcServer.start(8000);
     }
 }

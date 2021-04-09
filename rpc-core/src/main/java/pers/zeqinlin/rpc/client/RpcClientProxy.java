@@ -3,8 +3,6 @@ package pers.zeqinlin.rpc.client;
 
 
 import pers.zeqinlin.rpc.entity.RpcRequest;
-import pers.zeqinlin.rpc.entity.RpcResponse;
-
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
@@ -35,6 +33,6 @@ public class RpcClientProxy implements InvocationHandler {
                 .parasTypes(method.getParameterTypes())
                 .build();
         RpcClient rpcClient = new RpcClient();
-        return ((RpcResponse) rpcClient.sendRequest(rpcRequest, host, port)).getData();
+        return rpcClient.sendRequest(rpcRequest, host, port);
     }
 }
