@@ -15,8 +15,8 @@ import java.util.concurrent.ConcurrentHashMap;
 public class DefaultServiceRegistry implements ServiceRegistry{
     private static final Logger logger = LoggerFactory.getLogger(DefaultServiceRegistry.class);
 
-    private final Map<String,Object> serviceMap = new ConcurrentHashMap<>();
-    private final Set<String> registeredService = ConcurrentHashMap.newKeySet();    //已注册的服务集合信息
+    private  final Map<String,Object> serviceMap = new ConcurrentHashMap<>();
+    private  final Set<String> registeredService = ConcurrentHashMap.newKeySet();    //已注册的服务集合信息
 
     @Override
     public synchronized <T> void registry(T service) {

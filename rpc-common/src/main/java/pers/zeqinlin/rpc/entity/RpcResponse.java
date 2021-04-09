@@ -15,6 +15,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class RpcResponse<T> implements Serializable {
 
+
     /**
      * 响应状态码
      */

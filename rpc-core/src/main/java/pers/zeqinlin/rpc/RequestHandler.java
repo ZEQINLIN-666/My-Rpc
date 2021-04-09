@@ -1,10 +1,11 @@
-package pers.zeqinlin.rpc.server;
+package pers.zeqinlin.rpc;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pers.zeqinlin.rpc.entity.RpcRequest;
 import pers.zeqinlin.rpc.entity.RpcResponse;
 import pers.zeqinlin.rpc.enumeration.ResponseCode;
+
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -35,8 +36,9 @@ public class RequestHandler  {
         }catch (NoSuchMethodException e){
             return RpcResponse.fail(ResponseCode.NOT_FOUND_METHOD);
         }
-        return method.invoke(service,rpcRequest.getParas());
+        return method.invoke(service, rpcRequest.getParas());
     }
+
 
 
 }

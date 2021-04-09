@@ -11,9 +11,11 @@ import java.io.Serializable;
  * 测试用的传输实体
  */
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-public class HelloObject  implements Serializable {
+@AllArgsConstructor
+public class HelloObject implements Serializable {
+
     private Integer id;
     private String message;
+
 }

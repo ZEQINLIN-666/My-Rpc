@@ -11,7 +11,8 @@ import java.io.Serializable;
 /**
  * 消费方发送给服务提供者的请求对象
  */
-@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Data
 public class RpcRequest  implements Serializable {
     /**

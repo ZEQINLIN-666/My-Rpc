@@ -1,8 +1,9 @@
-package pers.zeqinlin.rpc.server;
+package pers.zeqinlin.rpc.socket.server;
 
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import pers.zeqinlin.rpc.RequestHandler;
 import pers.zeqinlin.rpc.registry.ServiceRegistry;
 
 import java.io.IOException;
@@ -11,12 +12,12 @@ import java.net.Socket;
 import java.util.concurrent.*;
 
 /**
- * 远程方法调用的服务端
+ * Socket方式进行远程方法调用的服务端
  */
-public class RpcServer {
+public class SocketServer {
 
 
-    private static final Logger logger = LoggerFactory.getLogger(RpcServer.class);
+    private static final Logger logger = LoggerFactory.getLogger(SocketServer.class);
     private static final int CORE_POOL_SIZE = 5;
     private static final int MAXIMUM_POOL_SIZE = 50;
     private static final int  KEEP_ALIVE_TIME= 60;
@@ -26,10 +27,10 @@ public class RpcServer {
     private final ServiceRegistry serviceRegistry;
 
     /**
-     * 在创建 RpcServer 对象时，传入一个 ServiceRegistry 作为这个服务的注册表。
+     * 在创建 SocketServer 对象时，传入一个 ServiceRegistry 作为这个服务的注册表。
      * @param serviceRegistry
      */
-    public RpcServer(ServiceRegistry serviceRegistry){
+    public SocketServer(ServiceRegistry serviceRegistry){
         this.serviceRegistry = serviceRegistry;
         BlockingQueue<Runnable> workingQueue = new ArrayBlockingQueue<>(BLOCKING_QUEUE_CAPACITY);
         ThreadFactory threadFactory = Executors.defaultThreadFactory();
@@ -37,7 +38,7 @@ public class RpcServer {
 
     }
 
-
+    
     public void start(int port){
         try(ServerSocket serverSocket = new ServerSocket(port)){
             logger.info("服务端启动...");

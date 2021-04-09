@@ -1,8 +1,9 @@
-package pers.zeqinlin.rpc.client;
+package pers.zeqinlin.rpc.socket.client;
 
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import pers.zeqinlin.rpc.RpcClient;
 import pers.zeqinlin.rpc.entity.RpcRequest;
 import pers.zeqinlin.rpc.entity.RpcResponse;
 import pers.zeqinlin.rpc.enumeration.ResponseCode;
@@ -16,13 +17,20 @@ import java.net.Socket;
 
 
 /**
- * 远程方法调用的客户端
+ * Socket进行远程方法调用的客户端
  */
-public class RpcClient {
-    private static final Logger logger = LoggerFactory.getLogger(RpcClient.class);
+public class SocketClient implements RpcClient {
+    private static final Logger logger = LoggerFactory.getLogger(SocketClient.class);
+    private final String host;
+    private final int port;
 
-    public Object sendRequest(RpcRequest rpcRequest, String host, int post) {
-        try (Socket socket = new Socket(host, post)) {
+    public SocketClient(String host, int port) {
+        this.host = host;
+        this.port = port;
+    }
+
+    public Object sendRequest(RpcRequest rpcRequest) {
+        try (Socket socket = new Socket(host, port)) {
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
             ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
             objectOutputStream.writeObject(rpcRequest);
