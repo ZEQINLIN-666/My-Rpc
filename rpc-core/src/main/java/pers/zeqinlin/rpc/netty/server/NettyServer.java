@@ -13,6 +13,7 @@ import pers.zeqinlin.rpc.RpcServer;
 import pers.zeqinlin.rpc.codec.CommonDecoder;
 import pers.zeqinlin.rpc.codec.CommonEncoder;
 import pers.zeqinlin.rpc.serializer.JsonSerializer;
+import pers.zeqinlin.rpc.serializer.KryoSerializer;
 
 /**
  * Netty服务端
@@ -22,13 +23,13 @@ public class NettyServer implements RpcServer {
     private static final Logger logger = LoggerFactory.getLogger(NettyServer.class);
     @Override
     public void start(int port) {
-        EventLoopGroup bossGruop = new NioEventLoopGroup();
-        EventLoopGroup workerGruop = new NioEventLoopGroup();
+        EventLoopGroup bossGroup = new NioEventLoopGroup();
+        EventLoopGroup workerGroup = new NioEventLoopGroup();
 
         try{
 
             ServerBootstrap serverBootstrap = new ServerBootstrap();
-            serverBootstrap.group(bossGruop,workerGruop)
+            serverBootstrap.group(bossGroup,workerGroup)
                     .channel(NioServerSocketChannel.class)
                     .handler(new LoggingHandler(LogLevel.INFO))
                     .option(ChannelOption.SO_BACKLOG,256)
@@ -38,7 +39,7 @@ public class NettyServer implements RpcServer {
                         @Override
                         protected void initChannel(SocketChannel ch) throws Exception {
                             ChannelPipeline pipeline = ch.pipeline();
-                            pipeline.addLast(new CommonEncoder(new JsonSerializer())); //自定义编码器
+                            pipeline.addLast(new CommonEncoder(new KryoSerializer())); //自定义编码器
                             pipeline.addLast(new CommonDecoder()); //自定义解码器
                             pipeline.addLast(new NettyServerHandler()); //自定义处理器
                         }
@@ -49,8 +50,8 @@ public class NettyServer implements RpcServer {
         }catch (InterruptedException e){
             logger.error("服务器启动时发生错误: ",e);
         }finally {
-            bossGruop.shutdownGracefully();
-            workerGruop.shutdownGracefully();
+            bossGroup.shutdownGracefully();
+            workerGroup.shutdownGracefully();
         }
 
 
