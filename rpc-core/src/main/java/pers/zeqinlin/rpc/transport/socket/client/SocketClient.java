@@ -1,9 +1,10 @@
-package pers.zeqinlin.rpc.socket.client;
+package pers.zeqinlin.rpc.transport.socket.client;
 
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import pers.zeqinlin.rpc.RpcClient;
+import pers.zeqinlin.rpc.serializer.CommonSerializer;
+import pers.zeqinlin.rpc.transport.RpcClient;
 import pers.zeqinlin.rpc.entity.RpcRequest;
 import pers.zeqinlin.rpc.entity.RpcResponse;
 import pers.zeqinlin.rpc.enumeration.ResponseCode;
@@ -23,7 +24,7 @@ public class SocketClient implements RpcClient {
     private static final Logger logger = LoggerFactory.getLogger(SocketClient.class);
     private final String host;
     private final int port;
-
+    private CommonSerializer serializer;
     public SocketClient(String host, int port) {
         this.host = host;
         this.port = port;
@@ -50,5 +51,10 @@ public class SocketClient implements RpcClient {
             logger.error("调用时发生错误：", e);
             throw new RpcException("服务调用失败:", e);
         }
+    }
+
+    @Override
+    public void setSerializer(CommonSerializer serializer) {
+        this.serializer = serializer;
     }
 }

@@ -1,4 +1,4 @@
-package pers.zeqinlin.rpc;
+package pers.zeqinlin.rpc.transport;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,7 +34,7 @@ public class RequestHandler  {
         try{
             method = service.getClass().getMethod(rpcRequest.getMethodName(), rpcRequest.getParasTypes());
         }catch (NoSuchMethodException e){
-            return RpcResponse.fail(ResponseCode.NOT_FOUND_METHOD);
+            return RpcResponse.fail(ResponseCode.NOT_FOUND_METHOD,rpcRequest.getRequestId());
         }
         return method.invoke(service, rpcRequest.getParas());
     }

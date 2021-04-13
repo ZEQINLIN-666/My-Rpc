@@ -1,6 +1,6 @@
 package pers.zeqinlin.test;
 
-import pers.zeqinlin.rpc.netty.server.NettyServer;
+import pers.zeqinlin.rpc.transport.netty.server.NettyServer;
 import pers.zeqinlin.rpc.registry.DefaultServiceRegistry;
 
 /**

@@ -1,11 +1,11 @@
 package pers.zeqinlin.test;
 
 
-import pers.zeqinlin.rpc.RpcClientProxy;
+import pers.zeqinlin.rpc.transport.RpcClientProxy;
 import pers.zeqinlin.rpc.api.HelloObject;
 import pers.zeqinlin.rpc.api.HelloService;
 
-import pers.zeqinlin.rpc.socket.client.SocketClient;
+import pers.zeqinlin.rpc.transport.socket.client.SocketClient;
 
 /**
  * Socket方式的测试客户端

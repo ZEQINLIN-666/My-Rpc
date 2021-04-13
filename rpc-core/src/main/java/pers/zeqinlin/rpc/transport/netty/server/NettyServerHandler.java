@@ -1,4 +1,4 @@
-package pers.zeqinlin.rpc.netty.server;
+package pers.zeqinlin.rpc.transport.netty.server;
 
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelFutureListener;
@@ -7,7 +7,7 @@ import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.util.ReferenceCountUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import pers.zeqinlin.rpc.RequestHandler;
+import pers.zeqinlin.rpc.transport.RequestHandler;
 import pers.zeqinlin.rpc.entity.RpcRequest;
 import pers.zeqinlin.rpc.entity.RpcResponse;
 import pers.zeqinlin.rpc.registry.DefaultServiceRegistry;
@@ -34,7 +34,7 @@ public class NettyServerHandler extends SimpleChannelInboundHandler<RpcRequest> 
             String interfaceName = msg.getInterfaceName();
             Object service = serviceRegistry.getService(interfaceName);
             Object result = requestHandler.handler(msg, service);
-            ChannelFuture channelFuture = ctx.writeAndFlush(RpcResponse.success(result));
+            ChannelFuture channelFuture = ctx.writeAndFlush(RpcResponse.success(result,msg.getRequestId()));
             channelFuture.addListener(ChannelFutureListener.CLOSE);
         }finally {
             ReferenceCountUtil.release(msg);

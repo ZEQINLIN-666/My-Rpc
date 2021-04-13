@@ -15,7 +15,10 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class RpcResponse<T> implements Serializable {
 
-
+    /**
+     * 响应对应的请求号
+     */
+    private String requestId;
     /**
      * 响应状态码
      */
@@ -33,8 +36,9 @@ public class RpcResponse<T> implements Serializable {
     /**
      * 响应成功信息
      */
-    public static<T> RpcResponse<T> success(T Data){
+    public static<T> RpcResponse<T> success(T Data,String requestId){
         RpcResponse<T> response = new RpcResponse<>();
+        response.setRequestId(requestId);
         response.setStatusCode(ResponseCode.SUCCESS.getCode());  //将状态码封装到ResponseCode对象中
         response.setData(Data);
         return response;
@@ -43,8 +47,9 @@ public class RpcResponse<T> implements Serializable {
     /**
      * 响应失败信息
      */
-    public static<T> RpcResponse<T> fail(ResponseCode code){
+    public static<T> RpcResponse<T> fail(ResponseCode code,String requestId){
         RpcResponse<T> response = new RpcResponse<>();
+        response.setRequestId(requestId);
         response.setStatusCode(code.getCode());
         response.setMessage(code.getMessage());
         return response;

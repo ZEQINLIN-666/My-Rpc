@@ -3,7 +3,7 @@ package pers.zeqinlin.test;
 
 import pers.zeqinlin.rpc.registry.DefaultServiceRegistry;
 import pers.zeqinlin.rpc.registry.ServiceRegistry;
-import pers.zeqinlin.rpc.socket.server.SocketServer;
+import pers.zeqinlin.rpc.transport.socket.server.SocketServer;
 
 
 /**

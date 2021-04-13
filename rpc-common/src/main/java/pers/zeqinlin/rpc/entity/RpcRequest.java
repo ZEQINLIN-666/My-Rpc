@@ -15,6 +15,11 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Data
 public class RpcRequest  implements Serializable {
+
+    /**
+     * 请求号
+     */
+    private String requestId;
     /**
      * 待调用的接口名
      */

@@ -1,4 +1,4 @@
-package pers.zeqinlin.rpc.netty.server;
+package pers.zeqinlin.rpc.transport.netty.server;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.*;
@@ -9,10 +9,10 @@ import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import pers.zeqinlin.rpc.RpcServer;
+import pers.zeqinlin.rpc.serializer.CommonSerializer;
+import pers.zeqinlin.rpc.transport.RpcServer;
 import pers.zeqinlin.rpc.codec.CommonDecoder;
 import pers.zeqinlin.rpc.codec.CommonEncoder;
-import pers.zeqinlin.rpc.serializer.JsonSerializer;
 import pers.zeqinlin.rpc.serializer.KryoSerializer;
 
 /**
@@ -21,6 +21,7 @@ import pers.zeqinlin.rpc.serializer.KryoSerializer;
 public class NettyServer implements RpcServer {
 
     private static final Logger logger = LoggerFactory.getLogger(NettyServer.class);
+    private CommonSerializer serializer;
     @Override
     public void start(int port) {
         EventLoopGroup bossGroup = new NioEventLoopGroup();
@@ -55,5 +56,10 @@ public class NettyServer implements RpcServer {
         }
 
 
+    }
+
+    @Override
+    public void setSerializer(CommonSerializer serializer) {
+        this.serializer = serializer;
     }
 }

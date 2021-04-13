@@ -16,6 +16,10 @@ public interface CommonSerializer {
                 return new KryoSerializer();
             case 1:
                 return new JsonSerializer();
+            case 2:
+                return new HessionSerializer();
+            case 3:
+                return new ProtostuffSerializer();
             default:
                 return null;
         }
