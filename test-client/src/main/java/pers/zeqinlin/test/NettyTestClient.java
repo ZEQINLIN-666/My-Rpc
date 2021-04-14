@@ -1,6 +1,6 @@
 package pers.zeqinlin.test;
 
-import pers.zeqinlin.rpc.serializer.HessionSerializer;
+
 import pers.zeqinlin.rpc.serializer.ProtostuffSerializer;
 import pers.zeqinlin.rpc.transport.RpcClient;
 import pers.zeqinlin.rpc.transport.RpcClientProxy;
@@ -14,7 +14,7 @@ import pers.zeqinlin.rpc.transport.netty.client.NettyClient;
 public class NettyTestClient {
 
     public static void main(String[] args) {
-        RpcClient client = new NettyClient("127.0.0.1", 9000);
+        RpcClient client = new NettyClient();
         client.setSerializer(new ProtostuffSerializer());
         RpcClientProxy rpcClientProxy = new RpcClientProxy(client);
         HelloService helloService = rpcClientProxy.getProxy(HelloService.class);

@@ -12,7 +12,7 @@ import pers.zeqinlin.rpc.transport.socket.client.SocketClient;
  */
 public class SocketTestClient {
     public static void main(String[] args) {
-        SocketClient client = new SocketClient("127.0.0.1", 8000);
+        SocketClient client = new SocketClient();
         RpcClientProxy proxy = new RpcClientProxy(client);
         HelloService helloService = proxy.getProxy(HelloService.class);
         HelloObject requestObject = new HelloObject(115, "hello Server~~");

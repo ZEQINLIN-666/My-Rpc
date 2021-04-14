@@ -1,9 +1,12 @@
 package pers.zeqinlin.test;
 
 
-import pers.zeqinlin.rpc.registry.DefaultServiceRegistry;
-import pers.zeqinlin.rpc.registry.ServiceRegistry;
-import pers.zeqinlin.rpc.transport.socket.server.SocketServer;
+import pers.zeqinlin.rpc.api.HelloObject;
+import pers.zeqinlin.rpc.api.HelloService;
+import pers.zeqinlin.rpc.serializer.KryoSerializer;
+import pers.zeqinlin.rpc.transport.RpcClientProxy;
+import pers.zeqinlin.rpc.transport.socket.client.SocketClient;
+
 
 
 /**
@@ -11,10 +14,12 @@ import pers.zeqinlin.rpc.transport.socket.server.SocketServer;
  */
 public class SocketTestServer {
     public static void main(String[] args) {
-         HelloServiceImpl helloService = new HelloServiceImpl();
-         ServiceRegistry serviceRegistry = new DefaultServiceRegistry();
-         serviceRegistry.registry(helloService);
-         SocketServer socketServer = new SocketServer(serviceRegistry);
-         socketServer.start(8000);
+        SocketClient client = new SocketClient();
+        client.setSerializer(new KryoSerializer());
+        RpcClientProxy proxy = new RpcClientProxy(client);
+        HelloService helloService = proxy.getProxy(HelloService.class);
+        HelloObject object = new HelloObject(12, "This is a message");
+        String res = helloService.hello(object);
+        System.out.println(res);
     }
 }

@@ -3,7 +3,7 @@ package pers.zeqinlin.rpc.transport.socket.server;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import pers.zeqinlin.rpc.transport.RequestHandler;
+import pers.zeqinlin.rpc.handler.RequestHandler;
 import pers.zeqinlin.rpc.registry.ServiceRegistry;
 import pers.zeqinlin.rpc.serializer.CommonSerializer;
 

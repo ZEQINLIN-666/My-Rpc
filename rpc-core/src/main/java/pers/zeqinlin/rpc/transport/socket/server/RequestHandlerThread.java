@@ -3,7 +3,7 @@ package pers.zeqinlin.rpc.transport.socket.server;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import pers.zeqinlin.rpc.transport.RequestHandler;
+import pers.zeqinlin.rpc.handler.RequestHandler;
 import pers.zeqinlin.rpc.entity.RpcRequest;
 import pers.zeqinlin.rpc.entity.RpcResponse;
 import pers.zeqinlin.rpc.registry.ServiceRegistry;
@@ -38,8 +38,7 @@ public class RequestHandlerThread  implements Runnable{
              OutputStream outputStream = socket.getOutputStream()) {
             RpcRequest rpcRequest = (RpcRequest) ObjectReader.readObject(inputStream);
             String interfaceName = rpcRequest.getInterfaceName();
-            Object service = serviceRegistry.getService(interfaceName);
-            Object result = requestHandler.handler(rpcRequest, service);
+            Object result = requestHandler.handler(rpcRequest);
             RpcResponse<Object> response = RpcResponse.success(result, rpcRequest.getRequestId());
             ObjectWriter.writeObject(outputStream,response,serializer);
         }catch (IOException e){

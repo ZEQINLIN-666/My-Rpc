@@ -3,6 +3,8 @@ package pers.zeqinlin.rpc.transport.socket.client;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import pers.zeqinlin.rpc.registry.NacoServiceRegistry;
+import pers.zeqinlin.rpc.registry.ServiceRegistry;
 import pers.zeqinlin.rpc.serializer.CommonSerializer;
 import pers.zeqinlin.rpc.transport.RpcClient;
 import pers.zeqinlin.rpc.entity.RpcRequest;
@@ -22,16 +24,15 @@ import java.net.Socket;
  */
 public class SocketClient implements RpcClient {
     private static final Logger logger = LoggerFactory.getLogger(SocketClient.class);
-    private final String host;
-    private final int port;
+
     private CommonSerializer serializer;
-    public SocketClient(String host, int port) {
-        this.host = host;
-        this.port = port;
+    private final ServiceRegistry serviceRegistry;
+    public SocketClient() {
+       this.serviceRegistry = new NacoServiceRegistry();
     }
 
     public Object sendRequest(RpcRequest rpcRequest) {
-        try (Socket socket = new Socket(host, port)) {
+        try (Socket socket = new Socket()) {
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
             ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
             objectOutputStream.writeObject(rpcRequest);

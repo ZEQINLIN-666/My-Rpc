@@ -1,10 +1,12 @@
-package pers.zeqinlin.rpc.transport;
+package pers.zeqinlin.rpc.handler;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pers.zeqinlin.rpc.entity.RpcRequest;
 import pers.zeqinlin.rpc.entity.RpcResponse;
 import pers.zeqinlin.rpc.enumeration.ResponseCode;
+import pers.zeqinlin.rpc.provider.ServiceProvider;
+import pers.zeqinlin.rpc.provider.ServiceProviderImpl;
 
 
 import java.lang.reflect.InvocationTargetException;
@@ -17,9 +19,15 @@ import java.lang.reflect.Method;
 public class RequestHandler  {
 
     private static final Logger logger = LoggerFactory.getLogger(RequestHandler.class);
+    private static final ServiceProvider serviceProvider;
 
-    public Object handler(RpcRequest rpcRequest,Object service){
+    static {
+        serviceProvider = new ServiceProviderImpl();
+    }
+
+    public Object handler(RpcRequest rpcRequest){
         Object result = null;
+        Object service = serviceProvider.getServiceProvider(rpcRequest.getInterfaceName());
         try{
             result = invokeTargetMethod(rpcRequest,service);
             logger.info("服务{}成功调用方法:{}",rpcRequest.getInterfaceName(),rpcRequest.getMethodName());

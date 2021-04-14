@@ -11,6 +11,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pers.zeqinlin.rpc.enumeration.RpcError;
 import pers.zeqinlin.rpc.exception.RpcException;
+import pers.zeqinlin.rpc.registry.NacoServiceRegistry;
+import pers.zeqinlin.rpc.registry.ServiceRegistry;
 import pers.zeqinlin.rpc.serializer.CommonSerializer;
 import pers.zeqinlin.rpc.transport.RpcClient;
 import pers.zeqinlin.rpc.codec.CommonDecoder;
@@ -19,6 +21,9 @@ import pers.zeqinlin.rpc.entity.RpcRequest;
 import pers.zeqinlin.rpc.entity.RpcResponse;
 import pers.zeqinlin.rpc.util.RpcMessageChecker;
 
+import java.net.InetSocketAddress;
+import java.util.concurrent.atomic.AtomicReference;
+
 
 /**
  * Netty服务消费方
@@ -26,9 +31,8 @@ import pers.zeqinlin.rpc.util.RpcMessageChecker;
 public class NettyClient implements RpcClient {
 
     private static final Logger logger = LoggerFactory.getLogger(NettyClient.class);
-
-
     private static final Bootstrap bootstrap;
+    private final ServiceRegistry serviceRegistry;
     private CommonSerializer serializer;
 
 
@@ -40,11 +44,9 @@ public class NettyClient implements RpcClient {
                 .channel(NioSocketChannel.class)
                 .option(ChannelOption.SO_KEEPALIVE, true);
     }
-    private String host;
-    private int port;
-    public NettyClient(String host, int port) {
-        this.host = host;
-        this.port = port;
+
+    public NettyClient() {
+        this.serviceRegistry = new NacoServiceRegistry();
     }
 
     @Override
@@ -53,22 +55,16 @@ public class NettyClient implements RpcClient {
             logger.error("未设置序列化器");
             throw new RpcException(RpcError.SERIALIZER_NOT_FOUND);
         }
-        bootstrap.handler(new ChannelInitializer<SocketChannel>() {
-            @Override
-            protected void initChannel(SocketChannel ch) {
-                ChannelPipeline pipeline = ch.pipeline();
-                pipeline.addLast(new CommonDecoder())
-                        .addLast(new CommonEncoder(serializer))
-                        .addLast(new NettyClientHandler());
-            }
-        });
+        /*提供了一个可以原子读写的对象引用变量。
+        原子意味着尝试更改相同AtomicReference的多个线程（例如，使用比较和交换操作）
+        不会使AtomicReference最终达到不一致的状态。
+        */
+        AtomicReference<Object> result = new AtomicReference<>(null);
 
         try {
-
-            ChannelFuture future = bootstrap.connect(host, port).sync();
-            logger.info("客户端连接到服务器 {}:{}", host, port);
-            Channel channel = future.channel();
-            if(channel != null) {
+            InetSocketAddress inetSocketAddress = serviceRegistry.lookupService(rpcRequest.getInterfaceName());
+            Channel channel = ChannelProvider.get(inetSocketAddress, serializer);
+            if(channel.isActive()) {
                 channel.writeAndFlush(rpcRequest).addListener(future1 -> {
                     if(future1.isSuccess()) {
                         logger.info(String.format("客户端发送消息: %s", rpcRequest.toString()));
@@ -86,7 +82,7 @@ public class NettyClient implements RpcClient {
         } catch (InterruptedException e) {
             logger.error("发送消息时有错误发生: ", e);
         }
-        return null;
+        return result.get();
     }
 
     @Override
